@@ -6,14 +6,12 @@ export const SEND_MESSAGE = 'SEND_MESSAGE';
 
 export const fetchMessages = (channel) => {
     const url = `https://wagon-chat.herokuapp.com/${channel}/messages`;
-    return fetch(url)
-    .then(response => response.json())
-    .then((data) => {
-        return {
-            type: FETCH_MESSAGES,
-            payload: data
-        };
-    });
+    const promise = fetch(url)
+    .then(response => response.json());
+    return {
+        type: FETCH_MESSAGES,
+        payload: promise
+    };
 };
 
 export const sendMessage = (channel, author, content) => {
