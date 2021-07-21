@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 // external modules
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -31,7 +32,7 @@ const reducers = combineReducers({
 
 // render an instance of the component in the DOM
 ReactDOM.render(
-  <Provider store={createStore(reducers, initialState, applyMiddleware(logger, promise))}>
+  <Provider store={createStore(reducers, initialState, applyMiddleware(promise, logger))}>
     <App />
   </Provider>,
   document.getElementById('root')

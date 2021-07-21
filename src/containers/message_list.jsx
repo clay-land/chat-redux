@@ -4,26 +4,35 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import Message from '../components/message';
 import { fetchMessages } from '../actions';
 
 export class MessageList extends Component {
     componentWillMount() {
-        this.props.fetchMessages(this.props.selectedChannel);
+        this.getMessages();
     }
 
     componentDidMount() {
-        this.interval = setInterval(this.props.fetchMessages(this.props.selectedChannel), 5000);
+        this.interval = setInterval(this.getMessages, 5000);
+    }
+
+    componentDidUpdate() {
+        this.messageListDiv.scrollTop = this.messageListDiv.scrollHeight;
     }
 
     componentWillUnmount() {
         clearInterval(this.interval);
     }
 
+    getMessages() {
+        this.props.fetchMessages(this.props.selectedChannel);
+    }
+
     render() {
         return (
-            <div>
+            <div ref={(messageListDiv) => { this.messageListDiv = messageListDiv; }}>
                 {this.props.messageList.map((message) => {
-                    return <p>{message.content}</p>;
+                    return <Message message={message} />;
                 })}
             </div>
         );

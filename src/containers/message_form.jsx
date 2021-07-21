@@ -7,8 +7,8 @@ import { bindActionCreators } from 'redux';
 import { sendMessage } from '../actions';
 
 export class MessageForm extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             value: ''
         };
