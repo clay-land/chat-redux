@@ -2,19 +2,31 @@
 /* eslint-disable indent */
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { changeChannel, fetchMessages } from '../actions';
 
 class ChannelList extends React.Component {
+    componentWillReceiveProps = (nextProps) => {
+        if (nextProps.selectedChannel !== this.props.selectedChannel) {
+            this.props.fetchMessages(nextProps.selectedChannel);
+        }
+    }
+    handleClick = (channel) => {
+        this.props.changeChannel(channel);
+    }
     render() {
         return (
             <div>
                 {this.props.channelList.map((channel) => {
                     return (
-                        <li
+                        <a
                           className={channel === this.props.selectedChannel ? "active-channel" : ""}
                           key={channel}
+                          onClick={() => this.handleClick(channel)}
                         >
                             {channel}
-                        </li>
+                        </a>
                     );
                 }) }
             </div>
@@ -29,7 +41,11 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = {
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(
+        { changeChannel, fetchMessages },
+        dispatch
+    );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChannelList);

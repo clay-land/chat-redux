@@ -2,6 +2,7 @@
 
 export const FETCH_MESSAGES = 'FETCH_MESSAGES';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
+export const CHANGE_CHANNEL = 'CHANGE_CHANNEL';
 
 
 export const fetchMessages = (channel) => {
@@ -28,5 +29,12 @@ export const sendMessage = (channel, author, content) => {
     return {
         type: SEND_MESSAGE,
         payload: promise
+    };
+};
+
+export const changeChannel = (channel) => {
+    return {
+        type: CHANGE_CHANNEL,
+        payload: channel
     };
 };
