@@ -13,7 +13,7 @@ export class MessageList extends Component {
     }
 
     componentDidMount() {
-        this.interval = setInterval(this.getMessages, 5000);
+        // this.interval = setInterval(this.getMessages, 5000);
     }
 
     componentDidUpdate() {
@@ -32,7 +32,7 @@ export class MessageList extends Component {
         return (
             <div ref={(messageListDiv) => { this.messageListDiv = messageListDiv; }}>
                 {this.props.messageList.map((message) => {
-                    return <Message message={message} />;
+                    return <Message message={message} key={message.id} />;
                 })}
             </div>
         );
