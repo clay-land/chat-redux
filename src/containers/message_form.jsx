@@ -13,6 +13,13 @@ export class MessageForm extends Component {
             value: ''
         };
     }
+    componentDidMount = () => {
+        this.messageInput.focus();
+    }
+
+    componentDidUpdate = () => {
+        this.messageInput.focus();
+    }
 
     handleChange = (e) => {
         this.setState({
@@ -35,7 +42,12 @@ export class MessageForm extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input type="text" value={this.state.value} onChange={this.handleChange} />
+                <input
+                  type="text"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  ref={(input) => { this.messageInput = input; }}
+                />
                 <input type="submit" value="Send" />
             </form>
         );

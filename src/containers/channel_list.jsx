@@ -21,6 +21,7 @@ class ChannelList extends React.Component {
                 {this.props.channelList.map((channel) => {
                     return (
                         <a
+                          role="presentation"
                           className={channel === this.props.selectedChannel ? "active-channel" : ""}
                           key={channel}
                           onClick={() => this.handleClick(channel)}
