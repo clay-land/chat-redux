@@ -41,7 +41,7 @@ export class MessageForm extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className="message-form">
                 <input
                   type="text"
                   value={this.state.value}

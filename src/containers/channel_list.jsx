@@ -17,19 +17,23 @@ class ChannelList extends React.Component {
     }
     render() {
         return (
-            <div>
-                {this.props.channelList.map((channel) => {
-                    return (
-                        <a
-                          role="presentation"
-                          className={channel === this.props.selectedChannel ? "active-channel" : ""}
-                          key={channel}
-                          onClick={() => this.handleClick(channel)}
-                        >
-                            {channel}
-                        </a>
-                    );
-                }) }
+            <div className="channel-list">
+                <h3>Chatroom List</h3>
+                <ul>
+                    {this.props.channelList.map((channel) => {
+                        return (
+                            <li
+                              role="presentation"
+                              className={channel === this.props.selectedChannel ? "active-channel" : ""}
+                              key={channel}
+                              onClick={() => this.handleClick(channel)}
+                            >
+                                {channel}
+                            </li>
+                        );
+                    }) }
+
+                </ul>
             </div>
         );
     }

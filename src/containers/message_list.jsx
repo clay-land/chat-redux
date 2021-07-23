@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Message from '../components/message';
+import MessageForm from '../containers/message_form';
+
 import { fetchMessages } from '../actions';
 
 export class MessageList extends Component {
@@ -30,10 +32,19 @@ export class MessageList extends Component {
 
     render() {
         return (
-            <div ref={(messageListDiv) => { this.messageListDiv = messageListDiv; }}>
-                {this.props.messageList.map((message) => {
-                    return <Message message={message} key={message.id} />;
-                })}
+            <div className="messages-container">
+                <div className="channel-title">
+                    <h3>{this.props.selectedChannel}</h3>
+                </div>
+                <div
+                  className="messages"
+                  ref={(messageListDiv) => { this.messageListDiv = messageListDiv; }}
+                >
+                    {this.props.messageList.map((message) => {
+                        return <Message message={message} key={message.id} />;
+                    })}
+                </div>
+                <MessageForm />
             </div>
         );
     }
